@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class User extends Migration
+class CreateProgramchairPerDegreesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class User extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('programchair_per_degrees', function (Blueprint $table) {
             $table->id();
-            $table->string('username', 100);
-            $table->string('password', 100);
-            $table->string('role', 100);
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class User extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('programchair_per_degrees');
     }
 }
