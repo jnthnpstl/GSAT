@@ -352,7 +352,6 @@ export default {
 
             axios.post('/application', this.apply).then(({data})=>{
                 
-            })
 
             if(data){
                 alert('Application Sent');
@@ -386,15 +385,16 @@ export default {
             }else{
                 alert('error')
             }
+            })
         }
     },
 
     mounted() {
         axios.post('/auth/user').then(({data})=>{
             console.log(data);
-            this.apply.firstname = data.first_name;
-            this.apply.middlename = data.middle_name;
-            this.apply.lastname = data.last_name;
+            this.apply.firstname = data.firstname;
+            this.apply.middlename = data.middlename;
+            this.apply.lastname = data.lastname;
             this.apply.homeaddress = data.address;
             this.apply.homeaddress = data.address;
             this.apply.contactnumber = data.contact_number;
@@ -402,6 +402,7 @@ export default {
             this.apply.gender = data.gender;
             this.apply.civilstatus = data.civilstatus;
             this.apply.citizenship = data.citizenship;
+            console.log(this.apply);
          
         })
 

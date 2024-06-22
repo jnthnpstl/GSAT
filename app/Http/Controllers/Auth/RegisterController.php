@@ -27,13 +27,15 @@ class RegisterController extends Controller
             'error' => $validator->getMessageBag()->toArray()
             ];
         }else{
+        
+     
 
 
         $new_register = new User;
-        $new_register->first_name = $request->firstname;
-        $new_register->middle_name = $request->middlename;
-        $new_register->last_name = $request->lastname;
-        $new_register->contact_number = $request->contactnumber;
+        $new_register->firstname = $request->firstname;
+        $new_register->middlename = $request->middlename;
+        $new_register->lastname = $request->lastname;
+        $new_register->contact_number = $request->contact_number;
         $new_register->birthdate = $request->birthdate;
         $new_register->address = $request->address;
         $new_register->gender = $request->gender;

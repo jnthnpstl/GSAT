@@ -162,7 +162,7 @@ export default {
           firstname: '',
           middlename: '',
           lastname: '',
-          contactnumber: '',
+          contact_number: '',
           birthdate: '',
           address: '',
           username: '',
@@ -184,10 +184,10 @@ export default {
                 for (var key in errors) {
                   this.error[key] = errors[key][0]
                 }
-
+      
                 if (data.success) {
-                    alert('save successful');
-                    window.location.href = '/login';
+                  alert('save successful');
+                  window.location.href = '/login';
                     // this.reg.firstname = '';
                     // this.reg.middlename = '';
                     // this.reg.lastname = '';
@@ -199,7 +199,8 @@ export default {
                     // this.reg.password = '';
                     // this.reg.confirmpassword = '';
                     // this.$emit('updated');
-                } else {
+                  } else {
+                    
                     alert('Edit Unsuccessful');
                 }
             });
