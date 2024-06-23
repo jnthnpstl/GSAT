@@ -22,7 +22,7 @@ RUN docker-php-ext-install pdo pdo_mysql
 # RUN docker-php-ext-install pdo pdo_mysql\
 #     && docker-php-ext-install zip
 
-RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
+RUN php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 
 
 RUN groupadd -g 1000 www
@@ -31,5 +31,6 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 COPY --chown=www:www . /var/www/GSAT
 
 USER www
+
 
 CMD ["php-fpm"]

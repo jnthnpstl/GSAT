@@ -9,7 +9,7 @@
 
         </p>
       </div>
-      <form class="mt-8 space-y-6" @submit.prevent="login">
+      <form class="mt-8 space-y-6" @submit.prevent="store.login">
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
@@ -52,51 +52,62 @@
   </div>
 </template>
 
-<script>
+<script setup>
 
-export default {
-  data(){
-        return{
-          loginData: {
-            username: '',
-            password: '',
-        },
-            error: null
-        }
-      },
-    methods: {
-      login(){
-        this.error = null;
-        axios.post('/auth/login', this.loginData ).then(({data})=>{
+import { onMounted } from 'vue'
+import { storeToRefs } from "pinia";
+import { loginStore } from '@/Store/loginStore';
+const store = loginStore();
+const {loginData, error} = storeToRefs(store);
+
+onMounted(() => {
+    store.chechAuth()
+});
+
+console.log(this)
+// export default {
+//   data(){
+//         return{
+//           loginData: {
+//             username: '',
+//             password: '',
+//         },
+//             error: null
+//         }
+//       },
+//     methods: {
+//       login(){
+//         this.error = null;
+//         axios.post('/auth/login', this.loginData ).then(({data})=>{
         
-        // console.log(@json(Auth::check()));
+//         // console.log(@json(Auth::check()));
 
-        if(data == 1){
-          window.location.href = "/dashboard";
+//         if(data == 1){
+//           window.location.href = "/dashboard";
 
-        // this.$router.push('/dashboard')
+//         // this.$router.push('/dashboard')
 
-        }else{
-          this.error = data;
-        }
+//         }else{
+//           this.error = data;
+//         }
 
-        })
-      },
+//         })
+//       },
       
-    },
+//     },
 
-    mounted() {
-        axios.post('/auth/check').then(({data})=>{
+//     mounted() {
+//         axios.post('/auth/check').then(({data})=>{
 
-            if(data == 1){
-                 this.$router.push('/dashboard')
-          }
+//             if(data == 1){
+//                  this.$router.push('/dashboard')
+//           }
 
-      })
+//       })
 
-    },
+//     },
     
 
-}
+// }
 
 </script>

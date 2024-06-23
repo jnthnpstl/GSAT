@@ -1,6 +1,6 @@
 <template lang="">
     <div>
-      <form @submit.prevent="register.register">
+      <form @submit.prevent="store.register">
         <div class="flex justify-center w-full md:w-auto">
             <div class="flex justify-center mt-12 flex-col">
                 <div class="w-full md:w-auto rounded overflow-hidden shadow-lg">
@@ -152,71 +152,71 @@
 
 
 </template>
-<script>
+<script setup>
 // import axios from 'axios'
 import { storeToRefs } from "pinia";
 import { registerStore } from '@/Store/registerStore'
 
-const register = registerStore();
-const {reg, error} = storeToRefs(register);
+const store = registerStore();
+const {reg, error} = storeToRefs(store);
 
-export default {
+// export default {
 
   
-    // data(){
-    //   return{
-    //     reg: {
-    //       firstname: '',
-    //       middlename: '',
-    //       lastname: '',
-    //       contact_number: '',
-    //       birthdate: '',
-    //       address: '',
-    //       username: '',
-    //       email: '',
-    //       password: '',
-    //       confirmpassword: '',
-    //     },
-    //     error: [],
-    //   }
+//     data(){
+//       return{
+//         reg: {
+//           firstname: '',
+//           middlename: '',
+//           lastname: '',
+//           contact_number: '',
+//           birthdate: '',
+//           address: '',
+//           username: '',
+//           email: '',
+//           password: '',
+//           confirmpassword: '',
+//         },
+//         error: [],
+//       }
     
-    // },
+//     },
 
-    // methods:{
-    //   register(){
-    //     if(this.reg.password == this.reg.confirmpassword){
-    //           axios.post('/register', this.reg).then(({data})=>{
-    //          this.error = []
-    //           var errors = data.error;
-    //             for (var key in errors) {
-    //               this.error[key] = errors[key][0]
-    //             }
+//     methods:{
+//       register(){
+//         if(this.reg.password == this.reg.confirmpassword){
+//               axios.post('/register', this.reg).then(({data})=>{
+//              this.error = []
+//               var errors = data.error;
+//                 for (var key in errors) {
+//                   this.error[key] = errors[key][0]
+//                 }
       
-    //             if (data.success) {
-    //               alert('save successful');
-    //               window.location.href = '/login';
-    //                 // this.reg.firstname = '';
-    //                 // this.reg.middlename = '';
-    //                 // this.reg.lastname = '';
-    //                 // this.reg.contactnumber = '';
-    //                 // this.reg.birthdate = '';
-    //                 // this.reg.address = '';
-    //                 // this.reg.username = '';
-    //                 // this.reg.email = '';
-    //                 // this.reg.password = '';
-    //                 // this.reg.confirmpassword = '';
-    //                 // this.$emit('updated');
-    //               } else {
+//                 if (data.success) {
+//                   alert('save successful');
+//                   window.location.href = '/login';
+//                     // this.reg.firstname = '';
+//                     // this.reg.middlename = '';
+//                     // this.reg.lastname = '';
+//                     // this.reg.contactnumber = '';
+//                     // this.reg.birthdate = '';
+//                     // this.reg.address = '';
+//                     // this.reg.username = '';
+//                     // this.reg.email = '';
+//                     // this.reg.password = '';
+//                     // this.reg.confirmpassword = '';
+//                     // this.$emit('updated');
+//                   } else {
                     
-    //                 alert('Edit Unsuccessful');
-    //             }
-    //         });
-    //       }else{
-    //         alert ('Password not match')
-    //       }    
-    //    }
-    //   }
-}
+//                     alert('Edit Unsuccessful');
+//                 }
+//             });
+//           }else{
+//             alert ('Password not match')
+//           }    
+//        }
+//       }
+// }
 </script>
 <style lang="">
     

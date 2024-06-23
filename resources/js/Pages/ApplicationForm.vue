@@ -3,7 +3,7 @@
 <div class="flex justify-center mt-10 sm:mt-0">
   <div class="flex justify-center md:gap-6 mt-5">
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <form @submit.prevent="application">
+      <form @submit.prevent="store.application">
         <div class="border border-gray-100 shadow-md overflow-hidden sm:rounded-lg">
           <div class="px-4 py-5 bg-white sm:p-6">
             <h1 class="text-3xl text-center font-medium leading-6 text-gray-900 mb-12">Application for Admission</h1>
@@ -305,124 +305,131 @@
 </div>
 </div>
 </template>
-<script>
+<script setup>
 
-import axios from 'axios';
+import { onMounted } from 'vue'
+import { storeToRefs } from "pinia";
+import { applicationStore } from '@/Store/applicationStore';
+const store = applicationStore();
+const {apply, degrees} = storeToRefs(store);
 
+onMounted(() => {
+    store.fetchData()
+});
 
-export default {
-    data(){
-        return{
-            apply:{
-                firstname: '',
-                middlename: '',
-                lastname: '',
-                dateofbirth: '',
-                citizenship: '',
-                gender: '',
-                civilstatus: '',
-                presentoccupation: '',
-                employer: '',
-                businessaddress: '',
-                homeaddress: '',
-                contactnumber: '',
-                email: '',
-                academicbackground: '',
-                degree: '',
-                major: '',
-                opportunity: '',
-                applying: '',
-                prevoiusapply: '',
-                datesubmitted: '',
-                experience: '', 
-                honors: '', 
-                scholarship: '', 
-                publications: '', 
-                unpublished: '', 
-                recommend: '', 
-                futureplans: '', 
-            },
-            degrees: null
-    }
+// export default {
+//     data(){
+//         return{
+//             apply:{
+//                 firstname: '',
+//                 middlename: '',
+//                 lastname: '',
+//                 dateofbirth: '',
+//                 citizenship: '',
+//                 gender: '',
+//                 civilstatus: '',
+//                 presentoccupation: '',
+//                 employer: '',
+//                 businessaddress: '',
+//                 homeaddress: '',
+//                 contactnumber: '',
+//                 email: '',
+//                 academicbackground: '',
+//                 degree: '',
+//                 major: '',
+//                 opportunity: '',
+//                 applying: '',
+//                 prevoiusapply: '',
+//                 datesubmitted: '',
+//                 experience: '', 
+//                 honors: '', 
+//                 scholarship: '', 
+//                 publications: '', 
+//                 unpublished: '', 
+//                 recommend: '', 
+//                 futureplans: '', 
+//             },
+//             degrees: null
+//     }
 
-    },
+//     },
     
-    methods: {
-        application(){
+//     methods: {
+//         application(){
 
-            axios.post('/application', this.apply).then(({data})=>{
+//             axios.post('/application', this.apply).then(({data})=>{
                 
 
-            if(data){
-                alert('Application Sent');
-                this.apply.firstname = '';
-                this.apply.middlename = '';
-                this.apply.lastname = '';
-                this.apply.dateofbirth = '';
-                this.apply.citizenship = '';
-                this.apply.gender = '';
-                this.apply.civilstatus = '';
-                this.apply.presentoccupation = '';
-                this.apply.employer = '';
-                this.apply.businessaddress = '';
-                this.apply.homeaddress = '';
-                this.apply.contactnumber = '';
-                this.apply.email = '';
-                this.apply.academicbackground = '';
-                this.apply.degree = '';
-                this.apply.major = '';
-                this.apply.opportunity = '';
-                this.apply.applying = '';
-                this.apply.prevoiusapply = '';
-                this.apply.datesubmitted = '';
-                this.apply.experience = '';
-                this.apply.honors = '';
-                this.apply.scholarship= '';
-                this.apply.publications = '';
-                this.apply.unpublished = '';
-                this.apply.recommend = '';
-                this.apply.futureplans = '';
-            }else{
-                alert('error')
-            }
-            })
-        }
-    },
+//             if(data){
+//                 alert('Application Sent');
+//                 this.apply.firstname = '';
+//                 this.apply.middlename = '';
+//                 this.apply.lastname = '';
+//                 this.apply.dateofbirth = '';
+//                 this.apply.citizenship = '';
+//                 this.apply.gender = '';
+//                 this.apply.civilstatus = '';
+//                 this.apply.presentoccupation = '';
+//                 this.apply.employer = '';
+//                 this.apply.businessaddress = '';
+//                 this.apply.homeaddress = '';
+//                 this.apply.contactnumber = '';
+//                 this.apply.email = '';
+//                 this.apply.academicbackground = '';
+//                 this.apply.degree = '';
+//                 this.apply.major = '';
+//                 this.apply.opportunity = '';
+//                 this.apply.applying = '';
+//                 this.apply.prevoiusapply = '';
+//                 this.apply.datesubmitted = '';
+//                 this.apply.experience = '';
+//                 this.apply.honors = '';
+//                 this.apply.scholarship= '';
+//                 this.apply.publications = '';
+//                 this.apply.unpublished = '';
+//                 this.apply.recommend = '';
+//                 this.apply.futureplans = '';
+//             }else{
+//                 alert('error')
+//             }
+//             })
+//         }
+//     },
 
-    mounted() {
-        axios.post('/auth/user').then(({data})=>{
-            console.log(data);
-            this.apply.firstname = data.firstname;
-            this.apply.middlename = data.middlename;
-            this.apply.lastname = data.lastname;
-            this.apply.homeaddress = data.address;
-            this.apply.homeaddress = data.address;
-            this.apply.contactnumber = data.contact_number;
-            this.apply.email = data.email;
-            this.apply.gender = data.gender;
-            this.apply.civilstatus = data.civilstatus;
-            this.apply.citizenship = data.citizenship;
-            console.log(this.apply);
+//     mounted() {
+//         axios.post('/auth/user').then(({data})=>{
+//             console.log(data);
+//             this.apply.firstname = data.firstname;
+//             this.apply.middlename = data.middlename;
+//             this.apply.lastname = data.lastname;
+//             this.apply.homeaddress = data.address;
+//             this.apply.homeaddress = data.address;
+//             this.apply.contactnumber = data.contact_number;
+//             this.apply.email = data.email;
+//             this.apply.gender = data.gender;
+//             this.apply.civilstatus = data.civilstatus;
+//             this.apply.citizenship = data.citizenship;
+//             console.log(this.apply);
          
-        })
+//         })
 
-        axios.get('/get/degrees').then(({data})=>{
-          this.degrees = data;
+//         axios.get('/get/degrees').then(({data})=>{
+//           this.degrees = data;
 
-        });
+//         });
 
-        axios.post('/auth/check').then(({data})=>{
-          console.log(data+'auth');
+//         axios.post('/auth/check').then(({data})=>{
+//           console.log(data+'auth');
           
-          if(data != 1){
-          this.$router.push('/login');
-          }
-        });
+//           if(data != 1){
+//           this.$router.push('/login');
+//           }
+//         });
 
 
-    },
+//     },
 
-}
+// }
 </script>
 <style lang="">
     

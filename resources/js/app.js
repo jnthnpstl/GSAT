@@ -3,7 +3,7 @@ window.Vue = require('vue').default;
 import { createApp, markRaw } from 'vue';
 import router from "./router";
 import App from './Components/App.vue'
-import { createRouter, createWebHistory, useRoute } from 'vue-router';
+import {  useRoute } from 'vue-router';
 import { createPinia } from 'pinia';
 // import Vue from 'Vue'
 // import { createRouter, createWebHistory } from 'vue-router';
@@ -29,12 +29,9 @@ const app = createApp({
     },
 })
 
+
 app.use(pinia)
 
-app.use(router)
-app.component
-app.mount('#app')
-
-
-
-
+app.use(router);
+// app.component('app', App);
+app.mount("#app");
