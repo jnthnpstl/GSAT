@@ -33,6 +33,6 @@ class Degrees extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('apply_form');
+        Schema::dropIfExists('degrees');
     }
 }

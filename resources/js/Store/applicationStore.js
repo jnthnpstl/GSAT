@@ -84,4 +84,4 @@ export const applicationStore = defineStore('application', {
         }
     }
     
-})
+})  

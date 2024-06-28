@@ -7,7 +7,7 @@ use App\Models\Application;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-
+-
 class ApplicationController extends Controller
 {
 
