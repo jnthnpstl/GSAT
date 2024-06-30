@@ -28,13 +28,17 @@ export const applicationStore = defineStore('application', {
                 datesubmitted: '',
                 experience: '', 
                 honors: '', 
-                scholarship: '', 
+                scholarships: [], 
                 publications: '', 
                 unpublished: '', 
                 recommend: '', 
                 futureplans: '', 
             },
-            degrees: null
+            degrees: null,
+            holders: {
+                scholarship:''
+            },
+            edittingIndex: null
         }
     },
     actions: {
@@ -50,6 +54,26 @@ export const applicationStore = defineStore('application', {
                     alert('error')
                 }
             })
+        },
+
+        saveScholarship(){
+            if (this.edittingIndex != null) {
+                this.apply.scholarships[this.edittingIndex] = this.holders.scholarship
+                this.holders.scholarship = ''
+                this.edittingIndex = null
+            } else {
+                this.apply.scholarships.push(this.holders.scholarship)
+                this.holders.scholarship = ''
+            }
+        },
+
+        deleteScholarship(i){
+            this.apply.scholarships.splice(i, 1);
+        },
+
+        editScholarship(i){
+            this.holders.scholarship = this.apply.scholarships[i]
+            this.edittingIndex = i
         },
 
         fetchData(){

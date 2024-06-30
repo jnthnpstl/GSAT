@@ -240,8 +240,24 @@
 
 
               <div>
+                <ul>
+                  <li v-for="(item, index) in apply.scholarships" :key = "index" class="border-b hover:bg-gray-50">
+                    <div class="flex justify-between">
+                      <p class="p-4">
+                        {{ item }}
+                      </p>
+                      <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                        <button type="button"  v-on:click="store.editScholarship(index)" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Edit</button>
+                        <button type="button"  v-on:click="store.deleteScholarship(index)" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
+                      </div>
+                    </div>
+                    </li>
+                </ul>
                 <label for="scholarship" class="block text-sm font-bold text-gray-700">Please list scholarships, honors, prizes, and awards you have received.</label>
-                <textarea type="text" rows="4" v-model="apply.scholarship" id="scholarship" autocomplete="scholarship" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                <textarea v-on:keyup.enter="store.addScholarship" type="text" required rows="4" v-model="holders.scholarship" id="scholarship" autocomplete="scholarship" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <button type="button"  v-on:click="store.saveScholarship" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Save</button>
+                </div>
               </div>
 
             <div class="hidden sm:block" aria-hidden="true">
@@ -311,7 +327,7 @@ import { onMounted } from 'vue'
 import { storeToRefs } from "pinia";
 import { applicationStore } from '@/Store/applicationStore';
 const store = applicationStore();
-const {apply, degrees} = storeToRefs(store);
+const {apply, degrees, holders} = storeToRefs(store);
 
 onMounted(() => {
     store.fetchData()

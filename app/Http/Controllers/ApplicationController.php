@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Application;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Scholarship;
 -
 class ApplicationController extends Controller
 {
@@ -17,7 +17,6 @@ class ApplicationController extends Controller
         return Application::join('dbiusis16.degrees', function($join) {
             $join->on('apply_form.degree_id', '=', 'dbiusis16.degrees.id');
           })->where("user_id", Auth::user()->id)->get();
-
     }
  
 
@@ -50,9 +49,16 @@ class ApplicationController extends Controller
         // dd ($new_application);
 
         return $res;
+    }
 
+    public function addScholarship()
+    {
+        
+        
 
     }
+
+
 
 }
 
