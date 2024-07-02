@@ -14,6 +14,8 @@ class Degrees extends Migration
     public function up()
     {
         //
+
+
         Schema::connection('mysql2')->create('degrees', function($table)
         {
             $table->increments('id');

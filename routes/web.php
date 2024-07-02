@@ -15,6 +15,7 @@ Route::post('/auth/check', [LoginController::class, 'loginData'])->name('auth.ch
 Route::post('/auth/user', [LoginController::class, 'getUser'])->name('auth.check');
 Route::post('/auth/apply_form', [ApplicationController::class, 'getApply'])->name('auth.check');
 Route::get('/get/degrees', [LoginController::class, 'getDegrees']);
+Route::get('/get/application', [ApplicationController::class, 'getApplicationDetails']);
 
 
 

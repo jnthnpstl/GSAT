@@ -22,14 +22,14 @@ class ApplyForm extends Migration
             $table->string('business_address', 100)->nullable();
             $table->string('academic_background', 100)->nullable();
             $table->string('degree_id')->nullable();
-            $table->string('opportunity', 100)->nullable();
+            $table->string('opportunities', 1000)->nullable();
             $table->string('semester_applying', 100)->nullable();
             $table->string('previously_applied', 100)->nullable();
             $table->date('date_submitted')->nullable();
             $table->string('it_was', 100)->nullable();
             $table->string('occupational_experience', 100)->nullable();
             $table->string('membership_honor', 100)->nullable();
-            $table->string('scholarship', 100)->nullable();
+            $table->string('scholarships', 1000)->nullable();
             $table->string('publications', 100)->nullable();
             $table->string('unpublished', 100)->nullable();
             $table->string('recommend', 100)->nullable();

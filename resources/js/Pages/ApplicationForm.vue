@@ -109,8 +109,25 @@
             </div>
 
               <div>
-                <label for="academicbackground" class="block text-sm font-bold text-gray-700">Academic Background, List all schools attended, starting with the latest.</label>
-                <textarea type="text" rows="4" v-model="apply.academicbackground" id="academicbackground" autocomplete="academicbackground" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                <p for="academicbackground" class="block text-sm font-bold text-gray-700">Academic Background, List all schools attended, starting with the latest.</p>
+                <ul>
+                  <li>
+                    <label for="graduate" class="block text-sm text-gray-700">Graduate</label>
+                    <input type="text" id="tertiary" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                  </li>
+                  <li>
+                    <label for="tertiary" class="block text-sm text-gray-700">Tertiary</label>
+                    <input type="text" id="tertiary"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                  </li>
+                  <li>
+                    <label for="secondary" class="block text-sm text-gray-700">Secondary</label>
+                    <input type="text" id="secondary" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                  </li>
+                  <li>
+                    <label for="primary" class="block text-sm text-gray-700">Primary</label>
+                    <input type="text" id="primary" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                  </li>
+                </ul>
               </div>
 
             <div class="hidden sm:block" aria-hidden="true">
@@ -137,15 +154,29 @@
                 <div class="py-5 mt-3 mb-3">
                 <div class="border-t border-gray-200"></div>
                 </div>
-
-
             </div>
-
-
               <div>
                 <label for="opportunity" class="block text-sm font-bold text-gray-700">List any professor with whom you would especially like to work with if given the opportunity.</label>
+                <input type="text" v-model="holders.opportunities" id="opportunity"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <div class="px-4 py-3 text-right sm:px-6">
+                  <button type="button" data-label="opportunities" v-on:click="store.saveToList" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">{{edittingIndex != null ? 'Save' : 'Add'}}</button>
+                </div>
+                <ul>
+                  <li v-for="(item, index) in apply.opportunities" :key = "index" class="border-b hover:bg-gray-50">
+                    <div class="flex justify-between">
+                      <p class="p-4">
+                        {{ item }}
+                      </p>
+                      <div class="px-4 py-3  text-right sm:px-6">
+                        <button type="button" data-label="opportunities" v-on:click="store.editFromList($event, index)" :disabled="edittingIndex != null"  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Edit</button>
+                        <button type="button" data-label="opportunities" v-on:click="store.deleteFromList($event, index)" class="inline-flex justify-center  ml-3 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
+                      </div>
+                    </div>
+                    </li>
+                </ul>
+                <!-- <label for="opportunity" class="block text-sm font-bold text-gray-700">List any professor with whom you would especially like to work with if given the opportunity.</label>
                 
-                <textarea type="text" rows="4" v-model="apply.opportunity" id="opportunity" autocomplete="opportunity" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                <textarea type="text" rows="4" v-model="apply.opportunity" id="opportunity" autocomplete="opportunity" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea> -->
               </div>
 
 
@@ -227,8 +258,26 @@
 
 
               <div>
-                <label for="honors" class="block text-sm font-bold text-gray-700">Please list your membership in honor and professional organizations. Indicate positions held, if any.</label>
-                <textarea type="text" rows="4" v-model="apply.honors" id="honors" autocomplete="honors" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                <label for="honor" class="block text-sm font-bold text-gray-700">Please list your membership in honor and professional organizations. Indicate positions held, if any.</label>
+                <input type="text" v-model="holders.honors" id="honor"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <div class="px-4 py-3 text-right sm:px-6">
+                  <button type="button" data-label="honors" v-on:click="store.saveToList" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">{{edittingIndex != null ? 'Save' : 'Add'}}</button>
+                </div>
+                <ul>
+                  <li v-for="(item, index) in apply.honors" :key = "index" class="border-b hover:bg-gray-50">
+                    <div class="flex justify-between">
+                      <p class="p-4">
+                        {{ item }}
+                      </p>
+                      <div class="px-4 py-3  text-right sm:px-6">
+                        <button type="button" data-label="honors" v-on:click="store.editFromList($event, index)" :disabled="edittingIndex != null"  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Edit</button>
+                        <button type="button" data-label="honors" v-on:click="store.deleteFromList($event, index)" class="inline-flex justify-center  ml-3 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
+                      </div>
+                    </div>
+                    </li>
+                </ul>
+                <!-- <label for="honors" class="block text-sm font-bold text-gray-700">Please list your membership in honor and professional organizations. Indicate positions held, if any.</label>
+                <textarea type="text" rows="4" v-model="apply.honors" id="honors" autocomplete="honors" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea> -->
               </div>
 
 
@@ -240,24 +289,24 @@
 
 
               <div>
+                <label for="scholarship" class="block text-sm font-bold text-gray-700">Please list scholarships, honors, prizes, and awards you have received.</label>
+                <input type="text" v-model="holders.scholarships" id="scholarship"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <div class="px-4 py-3 text-right sm:px-6">
+                  <button type="button" data-label="scholarships" v-on:click="store.saveToList" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"> {{edittingIndex != null ? 'Save' : 'Add'}}</button>
+                </div>
                 <ul>
                   <li v-for="(item, index) in apply.scholarships" :key = "index" class="border-b hover:bg-gray-50">
                     <div class="flex justify-between">
                       <p class="p-4">
                         {{ item }}
                       </p>
-                      <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                        <button type="button"  v-on:click="store.editScholarship(index)" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Edit</button>
-                        <button type="button"  v-on:click="store.deleteScholarship(index)" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
+                      <div class="px-4 py-3  text-right sm:px-6">
+                        <button type="button" data-label="scholarships" v-on:click="store.editFromList($event, index)" :disabled="edittingIndex != null" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"> Edit</button>
+                        <button type="button" data-label="scholarships" v-on:click="store.deleteFromList($event, index)" class="inline-flex justify-center  ml-3 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
                       </div>
                     </div>
                     </li>
                 </ul>
-                <label for="scholarship" class="block text-sm font-bold text-gray-700">Please list scholarships, honors, prizes, and awards you have received.</label>
-                <textarea v-on:keyup.enter="store.addScholarship" type="text" required rows="4" v-model="holders.scholarship" id="scholarship" autocomplete="scholarship" class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
-                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button type="button"  v-on:click="store.saveScholarship" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Save</button>
-                </div>
               </div>
 
             <div class="hidden sm:block" aria-hidden="true">
@@ -327,7 +376,7 @@ import { onMounted } from 'vue'
 import { storeToRefs } from "pinia";
 import { applicationStore } from '@/Store/applicationStore';
 const store = applicationStore();
-const {apply, degrees, holders} = storeToRefs(store);
+const {apply, degrees, holders, edittingIndex} = storeToRefs(store);
 
 onMounted(() => {
     store.fetchData()

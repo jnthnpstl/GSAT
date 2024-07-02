@@ -15,7 +15,7 @@ class CreateScholarshipsTable extends Migration
     {
         Schema::create('scholarships', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_info_id');
+            $table->integer('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('scholarsihp', 100);
             $table->timestamps();
         });
