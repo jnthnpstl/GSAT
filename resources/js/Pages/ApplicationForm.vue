@@ -157,9 +157,9 @@
             </div>
               <div>
                 <label for="opportunity" class="block text-sm font-bold text-gray-700">List any professor with whom you would especially like to work with if given the opportunity.</label>
-                <input type="text" v-model="holders.opportunities" id="opportunity"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="text" v-model="holders.opportunity" id="opportunity"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 <div class="px-4 py-3 text-right sm:px-6">
-                  <button type="button" data-label="opportunities" v-on:click="store.saveToList" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">{{edittingIndex != null ? 'Save' : 'Add'}}</button>
+                  <button type="button" data-label="opportunities" v-on:click="store.saveOpportunity" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">{{edittingIndex != null ? 'Save' : 'Add'}}</button>
                 </div>
                 <ul>
                   <li v-for="(item, index) in apply.opportunities" :key = "index" class="border-b hover:bg-gray-50">
@@ -168,8 +168,8 @@
                         {{ item }}
                       </p>
                       <div class="px-4 py-3  text-right sm:px-6">
-                        <button type="button" data-label="opportunities" v-on:click="store.editFromList($event, index)" :disabled="edittingIndex != null"  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Edit</button>
-                        <button type="button" data-label="opportunities" v-on:click="store.deleteFromList($event, index)" class="inline-flex justify-center  ml-3 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
+                        <button type="button" data-label="opportunities" v-on:click="store.editOpportunity(index)" :disabled="edittingIndex != null"  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Edit</button>
+                        <button type="button" data-label="opportunities" v-on:click="store.deleteOpportunity($event, index)" class="inline-flex justify-center  ml-3 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
                       </div>
                     </div>
                     </li>
@@ -259,9 +259,9 @@
 
               <div>
                 <label for="honor" class="block text-sm font-bold text-gray-700">Please list your membership in honor and professional organizations. Indicate positions held, if any.</label>
-                <input type="text" v-model="holders.honors" id="honor"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="text" v-model="holders.honor" id="honor"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 <div class="px-4 py-3 text-right sm:px-6">
-                  <button type="button" data-label="honors" v-on:click="store.saveToList" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">{{edittingIndex != null ? 'Save' : 'Add'}}</button>
+                  <button type="button" data-label="honors" v-on:click="store.saveHonor" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">{{edittingIndex != null ? 'Save' : 'Add'}}</button>
                 </div>
                 <ul>
                   <li v-for="(item, index) in apply.honors" :key = "index" class="border-b hover:bg-gray-50">
@@ -270,8 +270,8 @@
                         {{ item }}
                       </p>
                       <div class="px-4 py-3  text-right sm:px-6">
-                        <button type="button" data-label="honors" v-on:click="store.editFromList($event, index)" :disabled="edittingIndex != null"  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Edit</button>
-                        <button type="button" data-label="honors" v-on:click="store.deleteFromList($event, index)" class="inline-flex justify-center  ml-3 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
+                        <button type="button" data-label="honors" v-on:click="store.editHonor(index)" :disabled="edittingIndex != null"  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Edit</button>
+                        <button type="button" data-label="honors" v-on:click="store.deleteHonor(index)" class="inline-flex justify-center  ml-3 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
                       </div>
                     </div>
                     </li>
@@ -290,9 +290,9 @@
 
               <div>
                 <label for="scholarship" class="block text-sm font-bold text-gray-700">Please list scholarships, honors, prizes, and awards you have received.</label>
-                <input type="text" v-model="holders.scholarships" id="scholarship"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <input type="text" v-model="holders.scholarship" id="scholarship"class="mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 <div class="px-4 py-3 text-right sm:px-6">
-                  <button type="button" data-label="scholarships" v-on:click="store.saveToList" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"> {{edittingIndex != null ? 'Save' : 'Add'}}</button>
+                  <button type="button" data-label="scholarships" v-on:click="store.saveScholarship" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"> {{edittingIndex != null ? 'Save' : 'Add'}}</button>
                 </div>
                 <ul>
                   <li v-for="(item, index) in apply.scholarships" :key = "index" class="border-b hover:bg-gray-50">
@@ -301,8 +301,8 @@
                         {{ item }}
                       </p>
                       <div class="px-4 py-3  text-right sm:px-6">
-                        <button type="button" data-label="scholarships" v-on:click="store.editFromList($event, index)" :disabled="edittingIndex != null" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"> Edit</button>
-                        <button type="button" data-label="scholarships" v-on:click="store.deleteFromList($event, index)" class="inline-flex justify-center  ml-3 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
+                        <button type="button" data-label="scholarships" v-on:click="store.editScholarship(index)" :disabled="edittingIndex != null" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"> Edit</button>
+                        <button type="button" data-label="scholarships" v-on:click="store.deleteScholarship(index)" class="inline-flex justify-center  ml-3 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Delete</button>
                       </div>
                     </div>
                     </li>

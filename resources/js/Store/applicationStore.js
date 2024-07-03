@@ -36,9 +36,9 @@ export const applicationStore = defineStore('application', {
             },
             degrees: null,
             holders: {
-                scholarships:'',
-                opportunities:'',
-                honors:'',
+                scholarship:'',
+                opportunity:'',
+                honor:'',
             },
             edittingIndex: null
         }
@@ -57,7 +57,7 @@ export const applicationStore = defineStore('application', {
         },
 
         saveToList(event) {
-            const label = event.target?.getAttribute("data-label") ?? '' // if attribute is null/false, default to a string
+            const label = event.target?.getAttribute("data-label") ?? '' // if attribute is null/false, default to an empty string
             if (this.apply.hasOwnProperty(label) && this.holders.hasOwnProperty(label)) {
                 if (this.edittingIndex !== null) { // save to list when editing an element
                     this.apply[label][this.edittingIndex] = this.holders[label]
@@ -91,50 +91,50 @@ export const applicationStore = defineStore('application', {
             }
         },
 
-        // saveScholarship(){
-        //     if (this.edittingIndex != null) {
-        //         this.apply.scholarships[this.edittingIndex] = this.holders.scholarship
-        //         this.holders.scholarship = ''
-        //         this.edittingIndex = null
-        //     } else {
-        //         if (this.holders.scholarship.length > 0){
-        //             this.apply.scholarships.push(this.holders.scholarship)
-        //             this.holders.scholarship = ''
-        //         }
-        //     }
-        // },
+        saveScholarship(){
+            if (this.edittingIndex != null) {
+                this.apply.scholarships[this.edittingIndex] = this.holders.scholarship
+                this.holders.scholarship = ''
+                this.edittingIndex = null
+            } else {
+                if (this.holders.scholarship.length > 0){
+                    this.apply.scholarships.push(this.holders.scholarship)
+                    this.holders.scholarship = ''
+                }
+            }
+        },
 
-        // deleteScholarship(i){
-        //     this.apply.scholarships.splice(i, 1);
-        // },
+        deleteScholarship(i){
+            this.apply.scholarships.splice(i, 1);
+        },
 
-        // editScholarship(i){
-        //     this.holders.scholarship = this.apply.scholarships[i]
-        //     this.edittingIndex = i
-        // },
+        editScholarship(i){
+            this.holders.scholarship = this.apply.scholarships[i]
+            this.edittingIndex = i
+        },
 
-        // saveOpportunity(){
-        //     console.log("Clicked")
-        //     if (this.edittingIndex != null) {
-        //         this.apply.opportunities[this.edittingIndex] = this.holders.opportunity
-        //         this.holders.opportunity = ''
-        //         this.edittingIndex = null
-        //     } else {
-        //         if (this.holders.opportunity.length > 0){
-        //             this.apply.opportunities.push(this.holders.opportunity)
-        //             this.holders.opportunity = ''
-        //         }
-        //     }
-        // },
+        saveHonor(){
+            console.log("Clicked")
+            if (this.edittingIndex != null) {
+                this.apply.honors[this.edittingIndex] = this.holders.honor
+                this.holders.honor = ''
+                this.edittingIndex = null
+            } else {
+                if (this.holders.honor.length > 0){
+                    this.apply.honors.push(this.holders.honor)
+                    this.holders.honor = ''
+                }
+            }
+        },
 
-        // deleteOpportunity(i){
-        //     this.apply.opportunities.splice(i, 1);
-        // },
+        deleteHonor(i){
+            this.apply.honors.splice(i, 1);
+        },
 
-        // editOpportunity(i){
-        //     this.holders.opportunity = this.apply.opportunities[i]
-        //     this.edittingIndex = i
-        // },
+        editHonor(i){
+            this.holders.honor = this.apply.honors[i]
+            this.edittingIndex = i
+        },
 
         fetchData(){
             window.axios.post('/auth/user').then(({data})=>{
@@ -156,10 +156,10 @@ export const applicationStore = defineStore('application', {
               this.degrees = data;
             });
 
-            window.axios.get('/get/application').then(({data})=>{
-              console.log("Here's the data")
-              console.log(data)
-            });
+            // window.axios.get('/get/application').then(({data})=>{
+            //   console.log("Here's the data")
+            //   console.log(data)
+            // });
     
             window.axios.post('/auth/check').then(({data})=>{
               console.log(data+'auth');
